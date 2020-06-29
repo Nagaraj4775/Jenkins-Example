@@ -2,10 +2,10 @@
 
 description: "Test Pipeline from Jenkins"
 autoDeploy: false
-codeAnalysis: false
+sonarAnalysis: false: 
+checkSonarQualityGate: false
 publishToArtifactory: false	
 emailTo: "nagaraj4775@gmail.com"
-publishToYUM: false
 buildBranches:  ["master", "staging", "Release_1.0"]
-mavenCommand: "clean package"
+mavenCommand: "clean package -DskiTest=true"
 dockerTag: "app1:latest"
