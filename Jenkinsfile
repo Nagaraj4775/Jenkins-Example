@@ -1,68 +1,36 @@
+
+
 pipeline{
     agent any
-    tools {
-        maven 'maven'
-    }
     environment {
-        //gitURL = "https://github.com/jglick/simple-maven-project-with-tests.git"
-	    // testing
-        gitURL = "https://github.com/Nagaraj4775/Jenkins-Example.git"
+        def var1 = "variable1"
     }
     stages{
-        stage('git clone'){
+        stage('Clone'){
             steps{
                 script{
-                    cleanWs()
-                    git credentialsId: 'git_creds', poll: false, url: "${gitURL}", branch: 'master'
-                    echo "${env.BRANCH_NAME}"
-                    echo "$env.BRANCH_NAME"
+                    git credentialsId: 'github', url: 'https://github.com/Nagaraj4775/Jenkins-Example.git'
                 }
             }
         }
-        stage('Jenkins Build'){
+        stage('Second'){
             steps{
                 script{
-                    echo "We are in Jenkins build stage"
-                    sh "mvn clean package -Dmaven.test.failure.ignore=true"
-                }
-            }
-            post{
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-		            archive 'target/*.jar'    
+                    customProperties = readYaml file: "jenkins-properties.yml"
+                    echo "Hello"
+                    echo "${var1}"
+                    echo "${customProperties.autoDeploy}"
+                     
                 }
             }
         }
-        stage('Upload Artifacts') {
-	      steps{
-	        	script {
-		        	sh "echo 'uploading Artifacts'"
-		        }
-	        }
-        }
-        stage('Development') {
-	      steps{
-	        	script {
-		        	sh "echo 'Successfully deployed into Development environment'"
-		        }
-	        }
-        }
-        
-        stage('Production') {
-        when { branch 'master' }
-         input {
-                  message 'Do you want to approve'
-                  submitter 'nagaraj'
+         stage('Three'){
+            steps{
+                script{
+                    echo "${customProperties.sonarAnalysis}"
+                     
                 }
-                options {
-                  timeout(time: 1, unit: 'HOURS' )
             }
-
-	      steps{
-	        	script {
-		        	sh "echo 'Successfully deployed into Production environment'"
-		        }
-	        }
         }
     }
 }
