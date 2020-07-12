@@ -7,6 +7,6 @@ sonarAnalysis: false
 checkSonarQualityGate: false
 publishToArtifactory: false
 emailTo: "nagaraj4775@gmail.com"
-buildBranches:  [ master, staging, Release_1.0 ]
+buildBranches:  [ "master", "staging", "Release_1.0" ]
 mavenCommand: "clean package -DskiTest=true"
 dockerTag: "app1:latest"
