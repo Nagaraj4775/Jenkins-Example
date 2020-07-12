@@ -1,6 +1,7 @@
 ## Property files used by Jenkins
 
 description: "Test Pipeline from Jenkins"
+testurl: https://www.google.com/docs/
 autoDeploy: false
 sonarAnalysis: false
 checkSonarQualityGate: false
