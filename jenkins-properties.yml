@@ -11,5 +11,5 @@ buildBranches:  [ "master", "staging", "Release_1.0" ]
 mavenCommand: "clean package -DskiTest=true"
 dockerTag: "app1:latest"
 
-qa:
-  test: "hello"
+
+  
