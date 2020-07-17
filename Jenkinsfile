@@ -10,7 +10,7 @@ pipeline{
                     echo "Hello"           
                    //slackSend channel: 'jenkins-test', color: '#439FE0', message: 'Hello'
                 
-                    notifyBuild(currentBuild.result,"jenkins-test")
+                    slackNotify(currentBuild.result,"jenkins-test")
                 }
             }
         }
