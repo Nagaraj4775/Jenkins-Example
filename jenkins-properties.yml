@@ -3,7 +3,7 @@
 description: "Test Pipeline from Jenkins"
 testurl: "https://www.google.com/docs/"
 autoDeploy: false
-sonarAnalysis: false
+sonarAnalysis: true
 checkSonarQualityGate: false
 publishToArtifactory: false
 emailTo: "nagaraj4775@gmail.com"
